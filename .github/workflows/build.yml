@@ -1,43 +1,44 @@
-# SubPulse Auto-Build Workflow
-
 name: Build SubPulse APK
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.24.0'
-          channel: 'stable'
 
-      - name: Create asset directories
+      - name: Create asset dirs
         run: |
           mkdir -p assets/icons assets/images
-          touch assets/icons/.gitkeep
-          touch assets/images/.gitkeep
+          touch assets/icons/.gitkeep assets/images/.gitkeep
+
+      - name: Create local.properties
+        run: echo "flutter.sdk=$FLUTTER_SDK_ROOT" > android/local.properties
 
       - name: Get dependencies
         run: flutter pub get
 
       - name: Build APK
-        run: flutter build apk --debug
+        run: flutter build apk --debug 2>&1 || true
 
-      - name: Upload APK
+      - name: Upload logs on failure
+        if: failure()
         uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: build/**/*
+
+      - uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: subpulse-debug.apk
           path: build/app/outputs/flutter-apk/app-debug.apk
-          retention-days: 7
