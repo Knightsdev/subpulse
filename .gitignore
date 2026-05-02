@@ -1,0 +1,42 @@
+# Miscellaneous
+*.log
+*.pod
+*.m4
+*.tmp
+*.bak
+*.cache
+*~
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+generated/
+
+# Android
+android/.gradle/
+android/app/build/
+android/build/
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Podfile.lock
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Platform
+*.g.dart (keep only subscription.g.dart and settings_model.g.dart)
