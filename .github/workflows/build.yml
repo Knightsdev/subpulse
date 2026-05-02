@@ -1,3 +1,5 @@
+# SubPulse Auto-Build Workflow
+
 name: Build SubPulse APK
 
 on:
@@ -20,6 +22,12 @@ jobs:
         with:
           flutter-version: '3.24.0'
           channel: 'stable'
+
+      - name: Create asset directories
+        run: |
+          mkdir -p assets/icons assets/images
+          touch assets/icons/.gitkeep
+          touch assets/images/.gitkeep
 
       - name: Get dependencies
         run: flutter pub get

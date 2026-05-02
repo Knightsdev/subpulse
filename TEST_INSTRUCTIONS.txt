@@ -1,0 +1,30 @@
+@echo off
+echo ========================================
+echo   SubPulse - Quick Testing Guide
+echo ========================================
+echo.
+echo Option 1: Install Flutter (5 min)
+echo.
+echo 1. Download Flutter from:
+echo    https://docs.flutter.dev/get-started/install/windows
+echo.
+echo 2. Extract to C:\flutter
+echo.
+echo 3. Add to PATH:
+echo    Right-click This PC ^> Properties ^> 
+echo    Advanced Settings ^> Environment ^> 
+echo    System Variables ^> PATH ^>
+echo    Add: C:\flutter\bin
+echo.
+echo 4. Open Command Prompt and run:
+echo    cd "E:\Laptop data-drive\Laptop data\subpulse"
+echo    flutter pub get
+echo    flutter build apk --debug
+echo.
+echo ========================================
+echo.
+echo Your APK will be at:
+echo build\app\outputs\flutter-apk\app-debug.apk
+echo.
+echo ========================================
+pause
